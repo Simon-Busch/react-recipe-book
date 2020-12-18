@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 
-class Connexion extends React.Component {
+class Connexion extends Component {
   state = {
     pseudo: '',
     goToApp: false
   }
 
+  // set the state to true for login
   goToApp = event => {
     event.preventDefault()
     this.setState({ goToApp: true })
@@ -18,23 +19,25 @@ class Connexion extends React.Component {
   }
 
   render () {
+    //if login in
     if (this.state.goToApp) {
       return <Redirect push to={`/pseudo/${this.state.pseudo}`} />
     }
 
+    //else, sign up
     return (
       <div className='connexionBox'>
         <form className='connexion' onSubmit={this.goToApp} >
-          <h1>Ma Boîte à Recettes</h1>
+          <h1>My recipe box</h1>
           <input
             type='text'
             value={this.state.pseudo}
             onChange={this.handleChange}
-            placeholder='Nom du Chef'
+            placeholder='Your name'
             pattern='[A-Za-z-]{1,}'
             required />
-          <button type='submit'>GO</button>
-          <p>Pas de caractères spéciaux.</p>
+          <button type='submit'>Cook me!</button>
+          <p>Please don't use special characters</p>
         </form>
       </div>
     )
