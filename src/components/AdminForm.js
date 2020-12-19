@@ -16,7 +16,7 @@ const AdminForm = ({
   }
 
   return (
-    <div class="card">
+    <div className="card">
         <form className="admin-form">
           <input name="nom" 
                 onChange={e => handleChange(e, key)}

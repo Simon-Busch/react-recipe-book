@@ -22,7 +22,7 @@ const Card = ({ details }) => {
       
   return (
     <div className="card">
-    <div class="image">
+    <div className="image">
       {/* {important to mention path with require for when webpack compile} */}
       <img src={requireImage(details.image)} alt={details.nom} />
     </div>

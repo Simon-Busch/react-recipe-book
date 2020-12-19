@@ -27,7 +27,7 @@ class addRecipe extends Component {
 
   render () {
     return (
-      <div class="card">
+      <div className="card">
         <form className="admin-form ajouter-recette"
               onSubmit={this.handleSubmit }>
           <input value={this.state.nom} 
