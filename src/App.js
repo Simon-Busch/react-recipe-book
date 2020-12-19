@@ -42,6 +42,13 @@ class App extends Component {
     this.setState({ recettes })
   }
 
+  deleteRecipe = (key) => {
+    const recettes = { ...this.state.recettes }
+    // delete
+    recettes[key] = null
+    this.setState({ recettes })
+  }
+
   loadSeed = () => {
     this.setState( { recettes })
   }
@@ -65,6 +72,7 @@ class App extends Component {
           recipes={this.state.recettes}
           updateRecipe={this.updateRecipe}
           addRecipe={this.addRecipe}
+          deleteRecipe={this.deleteRecipe}
           loadSeed={this.loadSeed}
         />
       </div>

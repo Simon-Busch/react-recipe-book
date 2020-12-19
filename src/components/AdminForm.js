@@ -3,6 +3,7 @@ import React from 'react'
 const AdminForm = ({
   id: key, //give id the name "key"
   updateRecipe,
+  deleteRecipe,
   recipes
 }) => {
   const recipe = recipes[key]
@@ -37,7 +38,7 @@ const AdminForm = ({
                 value={recipe.instructions}
                 rows="15" 
                 placeholder="Instructions list" />
-          <button>Delete</button>
+          <button onClick={() => deleteRecipe(key)}>Delete</button>
         </form>
       </div>
   ) 
