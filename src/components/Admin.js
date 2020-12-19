@@ -46,8 +46,18 @@ class Admin extends Component {
       .then(this.handleAuth)
   }
 
+  logOut = async () => {
+    console.log('you are logged out')
+
+    await firebase.auth().signOut()
+    // uid back to null no will return login option
+    this.setState({ uid: null })
+  }
+
   render () {
     const { recipes, addRecipe, updateRecipe, loadSeed, deleteRecipe } = this.props
+
+    const logOut = <button onClick={this.logOut}>Log out</button>
 
     //if user is not connected
     //there is no uid 
@@ -56,10 +66,11 @@ class Admin extends Component {
     }
 
     //if user is not the owner of the page
-    if(this.state.uid !== this.state.chef) {
+    if(this.state.uid !== this.state.user) {
       return (
         <div>
           <p>this is not your recipe book :-)!</p>
+          { logOut }
         </div>
       )
     }
@@ -81,6 +92,7 @@ class Admin extends Component {
           )
       }
         <footer>
+        { logOut }
           <button
             onClick={loadSeed}>
             Seed
