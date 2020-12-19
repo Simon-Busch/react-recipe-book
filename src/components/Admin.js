@@ -14,9 +14,27 @@ class Admin extends Component {
     user: null
   }
 
-  handleAuth = authData => {
+  handleAuth = async authData => {
     // check in console all 
-    console.log(authData)
+    // console.log(authData)
+    const box = await base.fetch(this.props.pseudo, { context: this})
+    // await -> this action MUST be done before moving on
+    // fetch -> we collect these information from the database
+
+    // if user doesn't exist
+    if (!box.user) {
+      // write data
+      await base.post(`${this.props.pseudo}/user`, {
+        data: authData.user.uid
+      })
+    }
+
+    //update the state
+    this.setState({ 
+      uid: authData.user.uid,
+      //user existed  || created the account
+      user: box.user || authData.user.uid
+    })
   }
 
   authenticate = () => {
@@ -35,6 +53,15 @@ class Admin extends Component {
     //there is no uid 
     if(!this.state.uid) {
       return <Login authenticate={this.authenticate}></Login>
+    }
+
+    //if user is not the owner of the page
+    if(this.state.uid !== this.state.chef) {
+      return (
+        <div>
+          <p>this is not your recipe book :-)!</p>
+        </div>
+      )
     }
 
 
