@@ -20,10 +20,15 @@ class App extends Component {
   }
 
   componentDidMount() {
+    //if need to load data from API, it happens here
     this.ref = base.syncState(`/${this.state.pseudo}/recettes`, {
       context: this,
       state: 'recettes'
     })
+  }
+
+  componentDidUpdate () {
+    console.log('coucou update')
   }
 
   componentWillUnmount () {
