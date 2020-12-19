@@ -27,9 +27,9 @@ class App extends Component {
     })
   }
 
-  componentDidUpdate () {
-    console.log('coucou update')
-  }
+  // componentDidUpdate () {
+  //   console.log('coucou update')
+  // }
 
   componentWillUnmount () {
     base.removeBinding(this.ref)
