@@ -14,6 +14,17 @@ class Admin extends Component {
     user: null
   }
 
+  componentDidMount () {
+    //once the component it mounted
+    // check if there is a auth status change
+    firebase.auth().onAuthStateChanged(user => {
+      // if user is logged in
+      if (user) {
+        this.handleAuth({ user })
+      }
+    })
+  }
+
   handleAuth = async authData => {
     // check in console all 
     // console.log(authData)
