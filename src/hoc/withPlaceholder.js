@@ -1,4 +1,4 @@
-import Reactfrom "react";
+import React from "react";
 
 const withPlaceholder = WrappedComponent => (
   (props) => (
