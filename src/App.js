@@ -13,6 +13,8 @@ import withFirebase from './hoc/withFirebase'
 // Proptype
 import PropTypes from 'prop-types'
 
+//Context 
+import ColorContext from './components/Color'
 
 const App =({
   match,
@@ -31,21 +33,23 @@ const App =({
       )
 
   return (
-    <div className='box'>
-      <Header pseudo={match.params.pseudo}></Header>
-      <div className='cards'>
-        { cards }
+    <ColorContext>
+      <div className='box'>
+        <Header pseudo={match.params.pseudo}></Header>
+        <div className='cards'>
+          { cards }
+        </div>
+        <Admin
+          pseudo={match.params.pseudo}
+          // after the HOC set up, it's avaialble thorugh the props and caught back through destructuring
+          recipes={recettes}
+          updateRecipe={updateRecipe}
+          addRecipe={addRecipe}
+          deleteRecipe={deleteRecipe}
+          loadSeed={loadSeed}
+        />
       </div>
-      <Admin
-        pseudo={match.params.pseudo}
-        // after the HOC set up, it's avaialble thorugh the props and caught back through destructuring
-        recipes={recettes}
-        updateRecipe={updateRecipe}
-        addRecipe={addRecipe}
-        deleteRecipe={deleteRecipe}
-        loadSeed={loadSeed}
-      />
-    </div>
+    </ColorContext>
   )
 }
 
