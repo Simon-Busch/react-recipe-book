@@ -10,6 +10,10 @@ import Card from './components/Card'
 // HOC
 import withFirebase from './hoc/withFirebase'
 
+// Proptype
+import PropTypes from 'prop-types'
+
+
 const App =({
   match,
   recettes,
@@ -43,6 +47,17 @@ const App =({
       />
     </div>
   )
+}
+
+// will check if the type is correct. 
+// If all ok, ,no problem, otherwise error in console
+App.propTypes = {
+  match: PropTypes.object.isRequired,
+  recettes: PropTypes.object.isRequired,
+  updateRecipe: PropTypes.func.isRequired,
+  addRecipe: PropTypes.func.isRequired,
+  deleteRecipe: PropTypes.func.isRequired,
+  loadSeed: PropTypes.func.isRequired
 }
 
 const WrappedComponent = withFirebase(App)
