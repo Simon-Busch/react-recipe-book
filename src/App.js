@@ -10,29 +10,36 @@ import Card from './components/Card'
 // HOC
 import withFirebase from './hoc/withFirebase'
 
-const App =(props) => {
-  const cards = Object.keys(props.recettes)
+const App =({
+  match,
+  recettes,
+  updateRecipe,
+  addRecipe,
+  deleteRecipe,
+  loadSeed
+}) => {
+  const cards = Object.keys(recettes)
       .map(key => 
         <Card
         key={key}
-        details={props.recettes[key]}>
+        details={recettes[key]}>
         </Card>
       )
 
   return (
     <div className='box'>
-      <Header pseudo={props.match.params.pseudo}></Header>
+      <Header pseudo={match.params.pseudo}></Header>
       <div className='cards'>
         { cards }
       </div>
       <Admin
-        pseudo={props.match.params.pseudo}
-        // after the HOC set up, it's in the props now
-        recipes={props.recettes}
-        updateRecipe={props.updateRecipe}
-        addRecipe={props.addRecipe}
-        deleteRecipe={props.deleteRecipe}
-        loadSeed={props.loadSeed}
+        pseudo={match.params.pseudo}
+        // after the HOC set up, it's avaialble thorugh the props and caught back through destructuring
+        recipes={recettes}
+        updateRecipe={updateRecipe}
+        addRecipe={addRecipe}
+        deleteRecipe={deleteRecipe}
+        loadSeed={loadSeed}
       />
     </div>
   )
